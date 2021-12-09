@@ -66,7 +66,7 @@ async function x() {
 
 async function a() {
   const htmlResponse = await axios.get(
-    "http://loterias.caixa.gov.br/wps/portal/loterias/landing/megasena",
+    "http://loterias.caixa.gov.br/wps/portal/loterias/landing/quina",
     { withCredentials: true, headers: { Cookie: "security=true;" } }
   );
   const $ = cheerio.load(htmlResponse.data);
@@ -79,7 +79,12 @@ async function a() {
   let urlUltimoResultado = baseUrlToDownload + downloadResultadosLink;
   let urlDownloadTodosResultados = baseUrlToDownload + urlBuscarResultado;
 
-  let urlConcursoFilter = baseUrlToDownload + urlBuscarResultado.replace("c=cacheLevelPage/=/",`c=cacheLevelPage//p=concurso=${concurso}?timestampAjax=${new Date().getTime()}`);
+  let urlConcursoFilter =
+    baseUrlToDownload +
+    urlBuscarResultado.replace(
+      "c=cacheLevelPage/=/",
+      `c=cacheLevelPage//p=concurso=${concurso}?timestampAjax=${new Date().getTime()}`
+    );
 
   console.log(
     `URL download Resultado concurso ${concurso}: `,
@@ -92,8 +97,17 @@ async function a() {
     withCredentials: true,
     headers: {
       Cookie: "security=true;",
-      "Content-Type": "application/json",
-      Accept: "application/json",
+      Accept: "*/*",
+      "Accept-Encoding": "gzip, deflate",
+      "Accept-Language": "pt-BR,pt;q=0.9,en-US;q=0.8,en;q=0.7",
+      Connection: "keep-alive",
+      DNT: 1,
+      Host: "loterias.caixa.gov.br",
+      Referer:
+        "http://loterias.caixa.gov.br/wps/portal/loterias/landing/megasena",
+      "User-Agent":
+        "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/96.0.4664.93 Safari/537.36",
+      "X-Requested-With": "XMLHttpRequest",
     },
   });
 
