@@ -1,14 +1,14 @@
 {
   "name": "loterias-caixa-json",
-  "version": "2.1.0",
-  "description": "Módulo feito em node.js para obter o resultado das loterias da caixa e devolver um JSON com todos os dados",
+  "version": "1.0",
+  "description": "Módulo feito em node.js para obter o resultado das loterias da caixa e devolver um JSON com todos os dados. Procurar pelo ultimo sorteio ou até mesmo localizar um sorteio específico. Esse projeto é um fork do projeto original do @dennnisk.",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/dennnisk/loterias-caixa-json.git"
+    "url": "git+https://github.com/WalissonRodrigo/loterias-caixa-json.git"
   },
   "keywords": [
     "loterias",
@@ -29,12 +29,12 @@
     "timemania",
     "Time Mania"
   ],
-  "author": "Dennnis.k <dennnis.projects@gmail.com> (https://github.com/dennnisk)",
+  "author": "Walisson Rodrigo <walissonrodrigo@outlook.com> (https://github.com/WalissonRodrigo)",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/dennnisk/loterias-caixa-json/issues"
+    "url": "https://github.com/WalissonRodrigo/loterias-caixa-json/issues"
   },
-  "homepage": "https://github.com/dennnisk/loterias-caixa-json#readme",
+  "homepage": "https://github.com/WalissonRodrigo/loterias-caixa-json#readme",
   "dependencies": {
     "adm-zip": "^0.5.9",
     "axios": "^0.23.0",
