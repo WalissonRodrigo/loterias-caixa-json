@@ -1,5 +1,6 @@
 const megaSena = require("./lib/mega-sena");
 const lotoFacil = require("./lib/loto-facil");
+const federal = require("./lib/federal");
 const quina = require("./lib/quina");
 const lotomania = require("./lib/lotomania");
 const timemania = require("./lib/timemania");
@@ -24,9 +25,9 @@ exports.diaDeSorte = async function (
     return await diaDeSorte.htmlToJson(htmlResultados);
   } else {
     if (concurso) {
-      return await diaDeSorte.downloadConcursoLoteca(null, concurso);
+      return await diaDeSorte.downloadConcursoDiaDeSorte(null, concurso);
     }
-    return await diaDeSorte.downloadResultadoLoteca();
+    return await diaDeSorte.downloadResultadosDiaDeSorte();
   }
 };
 
@@ -50,6 +51,29 @@ exports.loteca = async function (
       return await loteca.downloadConcursoLoteca(null, concurso);
     }
     return await loteca.downloadResultadoLoteca();
+  }
+};
+
+exports.federal = async function (
+  htmlResultados,
+  saveHtmlToFile,
+  historico = true,
+  concurso = null
+) {
+  if (historico) {
+    if (!htmlResultados) {
+      htmlResultados = await federal.downloadResultadosFederal();
+      if (saveHtmlToFile)
+        require("fs").writeFileSync(saveHtmlToFile, htmlResultados);
+      console.log("DONWNLOAD, concluido");
+    }
+
+    return await federal.htmlToJson(htmlResultados);
+  } else {
+    if (concurso) {
+      return await federal.downloadConcursoFederal(null, concurso);
+    }
+    return await federal.downloadResultadoFederal();
   }
 };
 
