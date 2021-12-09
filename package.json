@@ -1,6 +1,6 @@
 {
   "name": "loterias-caixa-json",
-  "version": "1.0",
+  "version": "2.1.0",
   "description": "Módulo feito em node.js para obter o resultado das loterias da caixa e devolver um JSON com todos os dados. Procurar pelo ultimo sorteio ou até mesmo localizar um sorteio específico. Esse projeto é um fork do projeto original do @dennnisk.",
   "main": "index.js",
   "scripts": {
