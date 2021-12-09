@@ -1,13 +1,20 @@
 # loterias-caixa-json
-Módulo feito em node.js para obter o resultado das loterias da caixa e devolver um JSON com todos os dados.
+Módulo feito em node.js para obter o resultado das loterias da caixa e devolver um JSON com todos os dados. Procurar pelo ultimo sorteio ou até mesmo localizar um sorteio específico. Esse projeto é um fork do projeto original do @dennnisk.
 
-## Versão 2.0
+## Versão 1.0
 
-Alterado para utilizar o novo formato da caixa, para realizar os downloads e gerar os JSONs
+Alterado para utilizar o novo formato da caixa, para realizar os downloads e gerar os JSONs.
+Novas adaptações do projeto original permitem pegar o ultimo resultado ou um concurso especifico.
 
 ## Exemplo de uso
 
-You can see and example at the folder `example`
+Você pode ver um exemplo na pasta `example`
+
+## Instalação do pacote
+
+```bash
+  npm install WalissonRodrigo/loterias-caixa-json
+```
 
 ```javascript
 var loteriasCaixaJson = require('loterias-caixa-json');
@@ -19,6 +26,15 @@ try {
 	let megaSenaJson = await loteriasCaixaJson.megaSena();
 	console.debug(megaSenaJson);
 
+  // Retorna o JSON com o ultimo resultado da Mega Sena sem manipulações
+	let ultimoSorteioMegaSenaJson = await loteriasCaixaJson.megaSena(null, null, false);
+	console.debug(ultimoSorteioMegaSenaJson);
+
+  // Retorna o JSON com o resultado do concurso especificado da Mega Sena
+	let concursoMegaSenaJson = await loteriasCaixaJson.megaSena(null, null, false, 2435);
+	console.debug(concursoMegaSenaJson);
+  
+  // Demais métodos usam a mesma implementação em suas respectivas funções
 	// Realizada o download e retorna o JSON com os resultados da Loto Fácil
 	let lotoFacilJson = await loteriasCaixaJson.lotoFacil()
 	console.debug(lotoFacilJson);
