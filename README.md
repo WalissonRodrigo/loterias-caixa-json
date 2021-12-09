@@ -11,10 +11,16 @@ Novas adaptações do projeto original permitem pegar o ultimo resultado ou um c
 Você pode ver um exemplo na pasta `example`
 
 ## Instalação do pacote
-
+Instalação com Yarn
 ```bash
-  npm install WalissonRodrigo/loterias-caixa-json
+yarn add https://github.com/WalissonRodrigo/loterias-caixa-json.git
 ```
+ou
+Instalação com npm
+```bash
+npm install https://github.com/WalissonRodrigo/loterias-caixa-json.git
+```
+## Exemplos de implementações
 
 ```javascript
 var loteriasCaixaJson = require('loterias-caixa-json');
