@@ -70,18 +70,32 @@ async function a() {
     { withCredentials: true, headers: { Cookie: "security=true;" } }
   );
   const $ = cheerio.load(htmlResponse.data);
+  const concurso = 1234;
   // Obtem os campos que montam a URL para download
-  let downloadResultadosLink = $('a[class="title zeta"]');
-  let baseUrlToDownload = $("base");
-  let urlBuscarResultado = $('input[id="urlBuscarResultado"]');
+  let downloadResultadosLink = $('a[class="title zeta"]').attr("href");
+  let baseUrlToDownload = $("base").attr("href");
+  let urlBuscarResultado = $('input[id="urlBuscarResultado"]').attr("value");
   // Monta a URL e devolve
-  let urlUltimoResultado =
-    baseUrlToDownload.attr("href") + downloadResultadosLink.attr("href");
-  let urlDownloadTodosResultados =
-    baseUrlToDownload.attr("href") + urlBuscarResultado.attr("value");
+  let urlUltimoResultado = baseUrlToDownload + downloadResultadosLink;
+  let urlDownloadTodosResultados = baseUrlToDownload + urlBuscarResultado;
 
+  let urlConcursoFilter = baseUrlToDownload + urlBuscarResultado.replace("c=cacheLevelPage/=/",`c=cacheLevelPage//p=concurso=${concurso}?timestampAjax=${new Date().getTime()}`);
+
+  console.log(
+    `URL download Resultado concurso ${concurso}: `,
+    urlConcursoFilter
+  );
   console.log("URL download Ultimo Resultado: ", urlDownloadTodosResultados);
   console.log("URL download Resultados: ", urlDownloadTodosResultados);
+
+  const htmlResultadoConcurso = await axios.get(urlConcursoFilter, {
+    withCredentials: true,
+    headers: {
+      Cookie: "security=true;",
+      "Content-Type": "application/json",
+      Accept: "application/json",
+    },
+  });
 
   const htmlUltimoResultado = await axios.get(urlUltimoResultado, {
     withCredentials: true,
@@ -92,6 +106,8 @@ async function a() {
     headers: { Cookie: "security=true;" },
   });
 
+  console.log(htmlResultadoConcurso.data);
+  console.log(" ---------------------------- ");
   console.log(htmlUltimoResultado.data);
   console.log(" ---------------------------- ");
   console.log(htmlTodosResultados.data);
